@@ -83,11 +83,40 @@ export default function Navbar() {
       </SheetTrigger>
 
       <SheetContent
-        side="left"
-        className="w-full max-w-sm p-0"
+  side="left"
+  className="w-full max-w-sm p-0"
+>
+  {/* Logo */}
+  <div className="border-b px-6 py-5">
+    <Link
+      href="/"
+      className="text-2xl font-bold tracking-tight"
+    >
+      JS
+    </Link>
+  </div>
+
+  {/* Navigation */}
+  <nav className="flex flex-col p-4">
+    {navLinks.map((item) => (
+      <Link
+        key={item.href}
+        href={item.href}
+        className="
+          rounded-lg
+          px-4
+          py-3
+          text-base
+          font-medium
+          transition-colors
+          hover:bg-muted
+        "
       >
-        {/* Mobile navigation */}
-      </SheetContent>
+        {item.name}
+      </Link>
+    ))}
+  </nav>
+</SheetContent>
     </Sheet>
 
     <NavAction

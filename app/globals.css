@@ -274,3 +274,14 @@ body {
     color: var(--color-muted-foreground);
   }
 }
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* Internet Explorer & Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}

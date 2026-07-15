@@ -11,6 +11,14 @@ export function HeroSection() {
             <div className="md:hidden">
                 <HeroMobile />
             </div>
+
+            <div className="hidden md:block">
+                <HeroDesktop />
+            </div>
+
+            <div className="md:hidden">
+                <HeroMobile />
+            </div>
         </>
     );
 }

@@ -4,8 +4,10 @@ import { ArrowRight } from "lucide-react";
 
 export function HeroDesktop() {
     return (
-        <section className="grid h-[90vh] grid-cols-3 overflow-hidden">
+        <section className="relative h-[90vh]  overflow-hidden">
+            <div className="grid grid-cols-3 h-full">
 
+           
             <div className="relative">
 
                 <Image
@@ -15,28 +17,9 @@ export function HeroDesktop() {
   className="object-cover"
 />
 
-                <div className="absolute inset-0 bg-black/15"/>
+                
 
-                <div className="absolute left-14 top-1/2 -translate-y-1/2 max-w-sm text-white">
-
-                    <h1 className="text-6xl font-black">
-                        F50
-                    </h1>
-
-                    <p className="mt-5 text-2xl">
-                        Experience precision and control with F50 soccer cleats from adidas.
-                    </p>
-
-                    <Button
-                        className="mt-10 h-16 rounded-none bg-white px-10 text-black hover:bg-white"
-                    >
-                        SHOP NOW
-
-                        <ArrowRight className="ml-6"/>
-                    </Button>
-
-                </div>
-
+                
             </div>
 
             <div className="relative">
@@ -55,6 +38,76 @@ export function HeroDesktop() {
   alt="Football player"
   className="object-cover"
 />
+            </div>
+
+             </div>
+
+               <div
+    className="
+      absolute
+      inset-0
+      bg-gradient-to-r
+      from-black/45
+      via-black/10
+      to-transparent
+    "
+  />
+
+            <div className="absolute inset-0">
+
+            <div
+                className="
+                absolute
+                left-14
+                top-1/2
+                -translate-y-1/2
+                max-w-md
+                "
+            >
+                <h1
+  className="
+    text-7xl
+    font-black
+    tracking-tight
+    text-white
+  "
+>
+  F50
+</h1>
+
+<p
+  className="
+    mt-6
+    max-w-md
+    text-2xl
+    leading-relaxed
+    text-white
+  "
+>
+  Experience precision and control with F50 soccer cleats from adidas.
+</p>
+
+<Button
+  className="
+    mt-10
+    h-16
+    rounded-none
+    bg-white
+    px-10
+    text-base
+    font-bold
+    tracking-widest
+    text-black
+    hover:bg-white
+  "
+>
+  SHOP NOW
+
+  <ArrowRight className="ml-6 h-5 w-5" />
+</Button>
+
+            </div>
+
             </div>
 
         </section>
