@@ -33,19 +33,32 @@ export function ProductImages({
       {images.length > 4 && (
         <div className="flex justify-center -translate-y-4">
           <Button
-            className="rounded-none bg-white px-8 py-5 text-black"
-            onClick={() =>
-              setVisibleImages(
-                isExpanded
-                  ? 4
-                  : images.length
-              )
-            }
-          >
-            {isExpanded
-              ? "Show Less"
-              : "Show More"}
-          </Button>
+  variant="outline"
+  onClick={() =>
+    setVisibleImages(
+      isExpanded ? 4 : images.length
+    )
+  }
+  className="
+    h-12
+    min-w-44
+    rounded-none
+    border-2
+    border-black
+    bg-transparent
+    px-8
+    font-semibold
+    uppercase
+    tracking-[0.12em]
+    transition-all
+    duration-300
+    hover:bg-black
+    hover:text-white
+    active:scale-[0.98]
+  "
+>
+  {isExpanded ? "Show Less" : "Show More"}
+</Button>
         </div>
       )}
     </div>
