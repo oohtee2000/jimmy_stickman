@@ -1,5 +1,5 @@
-export default function page(){
-    return(
-        <div>account</div>
-    );
+import { AccountPage } from "@/components/account/account/AccountPage"
+
+export default function Account() {
+  return <AccountPage />
 }

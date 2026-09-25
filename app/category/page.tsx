@@ -1,7 +1,7 @@
-import { ProductCollection } from "@/components/products/ProductCollection";
+import { CategoryCollection } from "@/components/category/CategoryCollection";
 export default function Page() {
   return (
-    <ProductCollection/>
+    <CategoryCollection/>
 
   );
 }

@@ -7,4 +7,6 @@ export interface Product {
   oldPrice: string | null;
   price: string;
   discount: string | null;
+  gender: string;
+
 }
