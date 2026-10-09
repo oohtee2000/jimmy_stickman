@@ -1,6 +1,7 @@
 import { Wishlist } from "@/components/wishlist/Wishlist";
 
 
+
 const wishlistProducts = [
   {
     id: 1,
@@ -11,6 +12,7 @@ const wishlistProducts = [
     oldPrice: "₦190,000",
     price: "₦168,000",
     discount: "-12%",
+    gender: "Unisex",
   },
   {
     id: 2,
@@ -21,6 +23,7 @@ const wishlistProducts = [
     oldPrice: "₦190,000",
     price: "₦168,000",
     discount: "-12%",
+    gender: "Unisex",
   },
   {
     id: 3,
@@ -31,8 +34,10 @@ const wishlistProducts = [
     oldPrice: "₦220,000",
     price: "₦189,000",
     discount: "-14%",
+    gender: "Unisex",
   },
 ];
+
 
 export default function WishlistPage() {
   return <Wishlist products={wishlistProducts} />;

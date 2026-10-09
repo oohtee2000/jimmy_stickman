@@ -18,7 +18,8 @@ import { ProductHeader } from "./ProductHeader";
 
 //Block-scoped variable 'images' used before its declaration.ts(2448)
 
-const products = [
+
+const products: Product[] = [
   {
     id: 1,
     name: "Adilette Comfort Slides",
@@ -28,6 +29,7 @@ const products = [
     oldPrice: "₦96,000",
     price: "₦48,000",
     discount: "-50%",
+    gender: "Women",
   },
   {
     id: 2,
@@ -38,6 +40,7 @@ const products = [
     oldPrice: "₦78,000",
     price: "₦46,800",
     discount: "-40%",
+    gender: "Kids",
   },
   {
     id: 3,
@@ -48,6 +51,7 @@ const products = [
     oldPrice: "₦129,000",
     price: "₦77,400",
     discount: "-40%",
+    gender: "Women",
   },
   {
     id: 4,
@@ -58,6 +62,7 @@ const products = [
     oldPrice: "₦51,000",
     price: "₦30,600",
     discount: "-40%",
+    gender: "Kids",
   },
   {
     id: 5,
@@ -68,8 +73,10 @@ const products = [
     oldPrice: "₦45,000",
     price: "₦27,000",
     discount: "-40%",
+    gender: "Men",
   },
 ];
+
 
 const images = [
   "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800",

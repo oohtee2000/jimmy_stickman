@@ -6,15 +6,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/products/ProductCard";
 
-interface Product {
-  id: number;
-  name: string;
-  category: string;
-  image: string;
-  oldPrice: string;
-  price: string;
-  discount: string;
-}
+import type { Product } from "@/types/product";
 
 interface ProductCarouselProps {
   title: string;
