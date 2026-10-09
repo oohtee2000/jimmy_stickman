@@ -4,67 +4,7 @@ import { Collection } from "@/components/shared/Collection";
 import { ProductCard } from "@/components/products/ProductCard";
 import type { Product } from "@/types/product";
 
-const products: Product[] = [
-  {
-    id: 1,
-    name: "WORLDWIDE HOOPS GRAPHIC T-SHIRT",
-    category: "Performance",
-    gender: "Men",
-    colors: "1 colour",
-    price: "₦60,900",
-    oldPrice: "₦87,000",
-    discount: "-30%",
-    image:
-      "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1200&q=80",
-  },
-
-  {
-    id: 2,
-    name: "NEUCLASSICS T-SHIRT",
-    category: "Originals",
-    gender: "Men",
-    colors: "1 colour",
-    price: "₦39,000",
-    oldPrice: "₦78,000",
-    discount: "-50%",
-    image:
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=80",
-  },
-
-  {
-    id: 3,
-    name: "ADICOLOR CLASSICS 3-STRIPES T-SHIRT",
-    category: "Originals",
-    gender: "Men",
-    colors: "1 colour",
-    price: "₦59,000",
-    oldPrice: null,
-    discount: null,
-    image:
-      "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1200&q=80",
-  },
-
-  {
-    id: 4,
-    name: "TIRO 23 LEAGUE TRACKSUIT BOTTOMS",
-    category: "Performance",
-    gender: "Men",
-    colors: "1 colour",
-    price: "₦107,000",
-    oldPrice: null,
-    discount: null,
-    image:
-      "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=80",
-  },
-];
-
-
-// Convert "₦60,900" → 60900
-function getPrice(price: string) {
-  return Number(
-    price.replace("₦", "").replace(/,/g, "")
-  );
-}
+import { products, getPrice } from "./data"
 
 
 export function ProductCollection() {
@@ -74,8 +14,7 @@ export function ProductCollection() {
       count={products.length}
       backHref="/"
       items={products}
-      currentPage={1}
-      totalPages={15}
+      pageSize={8}
       showFilter
 
       renderItem={(product) => (

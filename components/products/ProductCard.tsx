@@ -69,6 +69,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
         <Image
           fill
+          unoptimized
           src={product.image}
           alt={product.name}
           sizes="(max-width:640px) 50vw,

@@ -77,8 +77,7 @@ export function CategoryCollection() {
       count={categories.length}
       backHref="/"
       items={categories}
-      totalPages={5}
-      currentPage={1}
+      pageSize={12}
       showFilter
 
       renderItem={(category) => (

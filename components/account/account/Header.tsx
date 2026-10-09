@@ -1,29 +1,35 @@
 "use client"
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-
 const navigation = [
   {
     label: "FEED",
-    href: "/feed",
+    id: "feed",
   },
   {
     label: "ORDERS",
-    href: "/orders",
+    id: "orders",
   },
   {
     label: "ACCOUNT",
-    href: "/account",
+    id: "account",
   },
-]
+] as const
 
-export function AccountHeader() {
-  const pathname = usePathname()
+type MainTab = (typeof navigation)[number]["id"]
 
+interface AccountHeaderProps {
+  activeTab: MainTab
+  onTabChange: (tab: MainTab) => void
+}
+
+export function AccountHeader({
+  activeTab,
+  onTabChange,
+}: AccountHeaderProps) {
   return (
     <header className="border-b border-neutral-300 bg-white">
       <div className="relative min-h-[230px] px-6 md:px-12">
+
         {/* Greeting */}
         <div className="absolute left-6 top-20 md:left-14 md:top-24">
           <h1 className="text-4xl font-black tracking-tight md:text-5xl">
@@ -41,12 +47,13 @@ export function AccountHeader() {
           "
         >
           {navigation.map((item) => {
-            const isActive = pathname === item.href
+            const isActive = activeTab === item.id
 
             return (
-              <Link
-                key={item.href}
-                href={item.href}
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => onTabChange(item.id)}
                 className={`
                   relative
                   px-5 pb-4 pt-5
@@ -66,7 +73,7 @@ export function AccountHeader() {
                 {isActive && (
                   <span className="absolute inset-x-0 bottom-0 h-1 bg-black" />
                 )}
-              </Link>
+              </button>
             )
           })}
         </nav>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -8,15 +8,7 @@ import {
   X,
 } from "lucide-react";
 
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-  PaginationEllipsis,
-} from "@/components/ui/pagination";
+import { CollectionPagination } from "./CollectionPagination";
 
 import { Button } from "@/components/ui/button";
 
@@ -60,8 +52,8 @@ interface CollectionProps<T> {
 
   showFilter?: boolean;
 
-  currentPage?: number;
-  totalPages?: number;
+  pageSize?: number;
+  
 
   filterGroups?: FilterGroup<T>[];
   sortOptions?: SortOption<T>[];
@@ -78,14 +70,15 @@ export function Collection<T>({
   renderItem,
 
   showFilter = true,
+  pageSize = 12,
 
-  currentPage = 1,
-  totalPages = 1,
-
+ 
   filterGroups = [],
   sortOptions = [],
 }: CollectionProps<T>) {
   const [filterOpen, setFilterOpen] = useState(false);
+
+  const [currentPage, setCurrentPage] = useState(1);
 
   const [selectedFilters, setSelectedFilters] = useState<
     Record<string, string[]>
@@ -95,9 +88,17 @@ export function Collection<T>({
     sortOptions[0]?.value ?? ""
   );
 
+
+  useEffect(() => {
+  setCurrentPage(1);
+}, [selectedFilters, selectedSort]);
+
   /*
    * FILTER PRODUCTS
    */
+
+
+
   const filteredItems = useMemo(() => {
     return items.filter((item) => {
       return filterGroups.every((group) => {
@@ -137,6 +138,21 @@ export function Collection<T>({
 
     return result;
   }, [filteredItems, selectedSort, sortOptions]);
+
+
+  const totalPages = Math.ceil(
+  sortedItems.length / pageSize
+);
+
+const paginatedItems = useMemo(() => {
+  const startIndex = (currentPage - 1) * pageSize;
+
+  return sortedItems.slice(
+    startIndex,
+    startIndex + pageSize
+  );
+}, [sortedItems, currentPage, pageSize]);
+
 
   /*
    * TOGGLE FILTER
@@ -287,11 +303,11 @@ export function Collection<T>({
               xl:grid-cols-4
             "
           >
-            {sortedItems.map((item, index) => (
-              <div key={index}>
-                {renderItem(item)}
-              </div>
-            ))}
+            {paginatedItems.map((item, index) => (
+  <div key={index}>
+    {renderItem(item)}
+  </div>
+))}
           </div>
         ) : (
           <div className="flex min-h-75 items-center justify-center">
@@ -315,83 +331,11 @@ export function Collection<T>({
           </div>
         )}
 
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <div className="mt-24 border-t pt-10">
-            <Pagination>
-              <PaginationContent className="gap-2">
-
-                <PaginationItem>
-                  <PaginationPrevious
-                    href="#"
-                    className="rounded-none"
-                  />
-                </PaginationItem>
-
-                <PaginationItem>
-                  <PaginationLink
-                    href="#"
-                    isActive={currentPage === 1}
-                    className="rounded-none"
-                  >
-                    1
-                  </PaginationLink>
-                </PaginationItem>
-
-                {totalPages >= 2 && (
-                  <PaginationItem>
-                    <PaginationLink
-                      href="#"
-                      isActive={currentPage === 2}
-                      className="rounded-none"
-                    >
-                      2
-                    </PaginationLink>
-                  </PaginationItem>
-                )}
-
-                {totalPages >= 3 && (
-                  <PaginationItem>
-                    <PaginationLink
-                      href="#"
-                      isActive={currentPage === 3}
-                      className="rounded-none"
-                    >
-                      3
-                    </PaginationLink>
-                  </PaginationItem>
-                )}
-
-                {totalPages > 4 && (
-                  <PaginationItem>
-                    <PaginationEllipsis />
-                  </PaginationItem>
-                )}
-
-                {totalPages > 3 && (
-                  <PaginationItem>
-                    <PaginationLink
-                      href="#"
-                      isActive={currentPage === totalPages}
-                      className="rounded-none"
-                    >
-                      {totalPages}
-                    </PaginationLink>
-                  </PaginationItem>
-                )}
-
-                <PaginationItem>
-                  <PaginationNext
-                    href="#"
-                    className="rounded-none"
-                  />
-                </PaginationItem>
-
-              </PaginationContent>
-            </Pagination>
-          </div>
-        )}
-
+       <CollectionPagination
+  currentPage={currentPage}
+  totalPages={totalPages}
+  onPageChange={setCurrentPage}
+/>
       </div>
 
       {/* FILTER SHEET */}
